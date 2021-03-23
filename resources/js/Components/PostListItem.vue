@@ -4,7 +4,7 @@
             {{ projects.title }}
         </td>
         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-            {{ projects.customer_id }}
+            {{ customers[1].social_reason }}
         </td>
         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
             {{ projects.description.substr(0, 20) }} ...
@@ -23,7 +23,7 @@
 <script>
 export default {
     name: "PostListItem",
-    props: ['projects'],
+    props: ['projects', 'customers'],
 }
 </script>
 

@@ -19,6 +19,7 @@ class ProjectsController extends Controller
     {
         return Inertia::render('Projects/Index', [
             'projects' => Projects::all(),
+            'Customers' => Customers::all()
         ]);
     }
 

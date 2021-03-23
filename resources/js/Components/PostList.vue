@@ -25,7 +25,7 @@
         </thead>
         <tbody>
         <!-- Odd row -->
-        <PostListItem :projects="post" v-for="(post,index) in array" :key="index"/>
+        <PostListItem :customers="customers" :projects="post" v-for="(post,index) in array" :key="index"/>
         </tbody>
     </table>
 </template>
@@ -36,9 +36,7 @@ import PostListItem from "@/Components/PostListItem";
 export default {
     name: "PostList",
     components: {PostListItem},
-    props: {
-        array: Array
-    }
+    props: ['projects', 'customers'],
 }
 </script>
 
