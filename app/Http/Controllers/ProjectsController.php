@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Inertia\Inertia;
 use App\Models\Projects;
+use App\Models\Customers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProjectsController extends Controller
 {
@@ -14,7 +17,9 @@ class ProjectsController extends Controller
      */
     public function index()
     {
-        //
+        return Inertia::render('Projects/Index', [
+            'projects' => Projects::all(),
+        ]);
     }
 
     /**

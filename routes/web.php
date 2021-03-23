@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\CustomersController;
 use App\Http\Controllers\Dashboard;
+use App\Http\Controllers\ProjectsController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -29,6 +31,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::get('/dashboard', [Dashboard::class, 'index'])->name('dashboard');
     Route::get('/customers', [Dashboard::class, 'index'])->name('customers');
-    Route::get('/projects', [Dashboard::class, 'index'])->name('projects');
+    Route::get('/projects', [ProjectsController::class, 'index'])->name('projects');
 
 });
