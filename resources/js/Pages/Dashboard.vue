@@ -17,7 +17,7 @@
                         </div>
                         <div>
                             <p>Nombre de projets</p>
-                            <p>{{ projects.length }} - <span>{{ projectsIncrease.length }}</span></p>
+                            <p>{{ projects.length }} - <span>{{ projectsGrowth }}</span></p>
                         </div>
                     </div>
 
@@ -36,5 +36,11 @@ export default {
         AppLayout,
     },
     props: ['customers', 'projects', 'projectsIncrease', 'customersIncrease'],
+    computed: {
+        projectsGrowth() {
+            const growth = (100 * this.projectsIncrease.length) / this.projects.length;
+            return growth.toFixed(1)
+        }
+    }
 }
 </script>
