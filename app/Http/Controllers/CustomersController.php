@@ -3,18 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customers;
+use App\Models\Projects;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class CustomersController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
+        return Inertia::render('Customers/Index', [
+            'projects' => Projects::all(),
+            'Customer' => Customers::all()
+        ]);
     }
 
     /**

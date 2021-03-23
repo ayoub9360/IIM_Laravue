@@ -30,7 +30,7 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::get('/dashboard', [Dashboard::class, 'index'])->name('dashboard');
-    Route::get('/customers', [Dashboard::class, 'index'])->name('customers');
+    Route::get('/customers', [CustomersController::class, 'index'])->name('customers');
     Route::get('/projects', [ProjectsController::class, 'index'])->name('projects');
 
 });

@@ -4,11 +4,7 @@
         <tr>
             <th scope="col"
                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Titre
-            </th>
-            <th scope="col"
-                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Client
+                Raison sociale
             </th>
             <th scope="col"
                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -16,7 +12,7 @@
             </th>
             <th scope="col"
                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Tickets
+                Projet
             </th>
             <th scope="col" class="relative px-6 py-3">
                 <span class="sr-only">Editer</span>
@@ -25,17 +21,18 @@
         </thead>
         <tbody>
         <!-- Odd row -->
-        <PostListItem :customers="customers" :projects="post" v-for="(post,index) in array" :key="index"/>
+        <CustomerListItem :customer="post" :projects="projects" v-for="(post,index) in customers"
+                          :key="index"/>
         </tbody>
     </table>
 </template>
 
 <script>
-import PostListItem from "@/Components/PostListItem";
+import CustomerListItem from "@/Components/CustomerListItem";
 
 export default {
-    name: "PostList",
-    components: {PostListItem},
+    name: "CustomerList",
+    components: {CustomerListItem},
     props: ['projects', 'customers'],
 }
 </script>

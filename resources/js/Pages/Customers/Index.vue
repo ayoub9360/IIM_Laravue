@@ -9,7 +9,7 @@
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                    <ProjectList :customers="Customer" :projects="projects"></ProjectList>
+                    <CustomerList :customers="Customer" :projects="projects"></CustomerList>
                 </div>
             </div>
         </div>
@@ -18,12 +18,12 @@
 
 <script>
 import AppLayout from '@/Layouts/AppLayout'
-import ProjectList from '@/Components/ProjectList'
+import CustomerList from '@/Components/CustomerList'
 
 export default {
     components: {
         AppLayout,
-        ProjectList
+        CustomerList
     },
     props: ['projects', 'Customer'],
 }
