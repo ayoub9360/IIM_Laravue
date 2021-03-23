@@ -19,7 +19,7 @@ class CreateProjectsTable extends Migration
             $table->text('description');
             $table->date('start_date');
             $table->date('end_date');
-            $table->boolean('finished');
+            $table->string('finished');
             $table->integer('day_sold');
             $table->foreignId('customer_id')->constrained('customers');
             $table->string('responsable_name');

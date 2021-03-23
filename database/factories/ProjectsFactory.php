@@ -28,7 +28,7 @@ class ProjectsFactory extends Factory
             'description' => $this->faker->text(),
             'start_date' => $date,
             'end_date' => $this->faker->dateTimeBetween($startDate = $date, $endDate = 'now')->format('Y-m-d'),
-            'finished' => $this->faker->boolean,
+            'finished' => $this->faker->numberBetween(0,2),
             'day_sold' => $this->faker->numberBetween(5, 58),
             'customer_id' => DB::table('customers')->get('id')->random(1)->first()->id,
             'responsable_name' => $this->faker->firstName,
