@@ -33,6 +33,7 @@ class CustomersFactory extends Factory
             'adress' => $this->faker->address,
             'zip_code' => $this->faker->numberBetween(10000, 99999),
             'city' => $this->faker->city,
+            'created_at' => $this->faker->dateTimeBetween($startDate = '2020-03-23', $endDate = 'now')->format('Y-m-d'),
         ];
     }
 }

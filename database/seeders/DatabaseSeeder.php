@@ -23,8 +23,8 @@ class DatabaseSeeder extends Seeder
         Db::table('customers')->truncate();
         Db::table('projects')->truncate();
 
-        Customers::factory(50)->create();
-        Projects::factory(50)->create();
+        Customers::factory(86)->create();
+        Projects::factory(127)->create();
 
         Schema::enableForeignKeyConstraints();
     }
