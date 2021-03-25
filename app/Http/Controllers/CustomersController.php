@@ -12,74 +12,68 @@ class CustomersController extends Controller
     public function index()
     {
         return Inertia::render('Customers/Index', [
-            'projects' => Projects::all(),
-            'Customer' => Customers::all()
+            'customerList' => Customers::with(['projects'])->orderBy("id", "Desc")->get()
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function add()
     {
-        //
+        return Inertia::render('Customers/add', [
+        ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function create(Request $request)
     {
-        //
+        $request->validate([
+            "description" => ['required', 'min:5'],
+            "social_reason" => ['required'],
+            "legal_status" => ['required'],
+            "capital" => ['required', 'integer'],
+            "siret_number" => ['required', 'unique:customers', 'min:14'],
+            "naf_code" => ['required', 'min:4'],
+            "country" => ['required'],
+            "adress" => ['required', 'min:4'],
+            "zip_code" => ['required', 'min:5', 'max:5'],
+            "city" => ['required', 'min:3'],
+        ]);
+
+        Customers::create($request->only('description', 'social_reason', 'legal_status', 'capital', "capital", "siret_number", "naf_code", "country", "adress", "zip_code", "city"));
+        return redirect('customers');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param \App\Models\Customers $customers
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Customers $customers)
+    public function edit($id, Request $request)
     {
-        //
+        $client = Customers::findOrFail($id);
+        return Inertia::render('Customers/edit', [
+            'customer' => $client
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param \App\Models\Customers $customers
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Customers $customers)
+    public function save($id, Request $request)
     {
-        //
+        $client = Customers::findOrFail($id);
+
+        $request->validate([
+            "description" => ['required', 'min:5'],
+            "social_reason" => ['required'],
+            "legal_status" => ['required'],
+            "capital" => ['required', 'integer'],
+            "siret_number" => ['required', 'min:14', 'unique:customers,id,' . $client->id],
+            "naf_code" => ['required', 'min:4'],
+            "country" => ['required'],
+            "adress" => ['required', 'min:4'],
+            "zip_code" => ['required', 'min:5', 'max:5'],
+            "city" => ['required', 'min:3'],
+        ]);
+
+        $client->update($request->only('description', 'social_reason', 'legal_status', 'capital', "capital", "siret_number", "naf_code", "country", "adress", "zip_code", "city"));
+        return redirect('customers');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Customers $customers
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Customers $customers)
+    public function delete($id)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param \App\Models\Customers $customers
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Customers $customers)
-    {
-        //
+        $client = Customers::findOrFail($id);
+        $client->delete();
+        return redirect('customers');
     }
 }

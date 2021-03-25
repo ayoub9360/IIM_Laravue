@@ -21,7 +21,7 @@ class CreateProjectsTable extends Migration
             $table->date('end_date');
             $table->string('finished');
             $table->integer('day_sold');
-            $table->foreignId('customer_id')->constrained('customers');
+            $table->foreignId('customers_id')->constrained('customers');
             $table->string('responsable_name');
             $table->string('responsable_surname');
             $table->string('responsable_number');

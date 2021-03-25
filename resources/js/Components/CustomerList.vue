@@ -21,7 +21,7 @@
         </thead>
         <tbody>
         <!-- Odd row -->
-        <CustomerListItem :customer="post" :projects="projects" v-for="(post,index) in customers"
+        <CustomerListItem :customer="post" v-for="(post,index) in liste"
                           :key="index"/>
         </tbody>
     </table>
@@ -33,7 +33,7 @@ import CustomerListItem from "@/Components/CustomerListItem";
 export default {
     name: "CustomerList",
     components: {CustomerListItem},
-    props: ['projects', 'customers'],
+    props: ['liste'],
 }
 </script>
 

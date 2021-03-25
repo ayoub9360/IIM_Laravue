@@ -25,7 +25,7 @@
         </thead>
         <tbody>
         <!-- Odd row -->
-        <ProjectListItem :customer="customers[post.customer_id - 1]" :projects="post" v-for="(post,index) in projects"
+        <ProjectListItem :customer="customers[post.customers_id-1]" :projects="post" v-for="(post,index) in projects"
                          :key="index"/>
         </tbody>
     </table>
