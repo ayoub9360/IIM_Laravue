@@ -13,8 +13,8 @@ class ProjectsController extends Controller
     public function index()
     {
         return Inertia::render('Projects/Index', [
-            'projects' => Projects::all(),
-            'Customer' => Customers::all()
+            'projects' => Projects::orderBy("id", "Desc")->get(),
+            'Customer' => Customers::all(),
         ]);
     }
 
