@@ -20,7 +20,10 @@
                 Annulé</p>
         </td>
         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-            <a href="#" class="text-indigo-600 hover:text-indigo-900">Editer</a>
+            <inertia-link class="text-indigo-600 hover:text-indigo-900"
+                          :href="route('projects.edit', projects.id)">
+                Editer
+            </inertia-link>
         </td>
     </tr>
 </template>

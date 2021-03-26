@@ -11,7 +11,7 @@
                 Projets
             </h2>
             <inertia-link class="bg-purple-700 hover:bg-purple-500 text-white font-bold py-2 px-8 rounded"
-                          :href="route('customers.add')">
+                          :href="route('projects.add')">
                 Créer un projet
             </inertia-link>
         </div>

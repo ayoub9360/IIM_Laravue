@@ -18,10 +18,32 @@ class ProjectsController extends Controller
         ]);
     }
 
+    public function add()
+    {
+        $client = Customers::all();
+        return Inertia::render('Projects/add', [
+            'customers' => $client
+        ]);
+    }
+
 
     public function create(Request $request)
     {
+        $request->validate([
+            "title" => ['required'],
+            "description" => ['required'],
+            "start_date" => ['required'],
+            "end_date" => ['required'],
+            "finished" => ['required'],
+            "day_sold" => ['required'],
+            "customers_id" => ['required'],
+            "responsable_name" => ['required'],
+            "responsable_surname" => ['required'],
+            "responsable_number" => ['required'],
+        ]);
 
+        Projects::create($request->only('title', 'description', 'start_date', 'end_date', "finished", "day_sold", "customers_id", "responsable_name", "responsable_surname", "responsable_number"));
+        return redirect('projects');
     }
 
     /**
@@ -52,9 +74,42 @@ class ProjectsController extends Controller
      * @param \App\Models\Projects $projects
      * @return \Illuminate\Http\Response
      */
-    public function edit(Projects $projects)
+    public function edit($id, Request $request)
     {
-        //
+        $client = Customers::all();
+        $project = Projects::findOrFail($id);
+        return Inertia::render('Projects/edit', [
+            'project' => $project,
+            'customers' => $client
+        ]);
+    }
+
+    public function save($id, Request $request)
+    {
+        $project = Projects::findOrFail($id);
+
+        $request->validate([
+            "title" => ['required'],
+            "description" => ['required'],
+            "start_date" => ['required'],
+            "end_date" => ['required'],
+            "finished" => ['required'],
+            "day_sold" => ['required'],
+            "customers_id" => ['required'],
+            "responsable_name" => ['required'],
+            "responsable_surname" => ['required'],
+            "responsable_number" => ['required'],
+        ]);
+
+        $project->update($request->only('title', 'description', 'start_date', 'end_date', "finished", "day_sold", "customers_id", "responsable_name", "responsable_surname", "responsable_number"));
+        return redirect('projects');
+    }
+
+    public function delete($id)
+    {
+        $project = Projects::findOrFail($id);
+        $project->delete();
+        return redirect('projects');
     }
 
     /**

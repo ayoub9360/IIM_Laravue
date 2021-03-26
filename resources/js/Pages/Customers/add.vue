@@ -63,7 +63,7 @@
 
 <script>
 import AppLayout from '@/Layouts/AppLayout'
-import ProjectList from '@/Components/ProjectList'
+
 
 export default {
     components: {

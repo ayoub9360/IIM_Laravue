@@ -39,4 +39,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::put('/customers/edit/{id}/save', [CustomersController::class, 'save'])->name('customers.save');
     Route::delete('/customers/edit/{id}/delete', [CustomersController::class, 'delete'])->name('customers.delete');
 
+    Route::get('/projects/add', [ProjectsController::class, 'add'])->name('projects.add');
+    Route::post('/projects/create', [ProjectsController::class, 'create'])->name('projects.create');
+    Route::get('/projects/edit/{id}', [ProjectsController::class, 'edit'])->name('projects.edit');
+    Route::put('/projects/edit/{id}/save', [ProjectsController::class, 'save'])->name('projects.save');
+    Route::delete('/projects/edit/{id}/delete', [ProjectsController::class, 'delete'])->name('projects.delete');
+
 });
