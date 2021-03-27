@@ -94,7 +94,7 @@ class ProjectsController extends Controller
             "start_date" => ['required'],
             "end_date" => ['required'],
             "finished" => ['required'],
-            "day_sold" => ['required'],
+            "day_sold" => ['required','min:0'],
             "customers_id" => ['required'],
             "responsable_name" => ['required'],
             "responsable_surname" => ['required'],
