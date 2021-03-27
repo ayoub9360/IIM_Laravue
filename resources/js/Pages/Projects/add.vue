@@ -8,67 +8,102 @@
 
         <div class="flex justify-between max-w-7xl mx-auto sm:px-6 lg:px-8 pt-4">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Ajouter un projet
+                Créer un projet
             </h2>
         </div>
 
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 pt-4 bg-gray-50">
             <form @submit.prevent="submit">
-                <label for="title">Titre</label>
+                <h2>Responsable projet</h2>
+                <span>Ces informations serviront à savoir qui dirige le projet du coté du client</span>
+                <div class="line first">
+                   <label for="customers_id">Client du projet</label>
+                    <select v-model="form.customers_id" >
+                        <option v-for="item in customers" :value="item.id" :key="item.id">
+                            {{ item.social_reason }}
+                        </option>
+                    </select>
+                    <p>{{ errors.customers_id }}</p>
+                </div>
+
+                <div class="line">
+                   <label for="responsable_name">Nom responsable</label>
+                    <input type="text" id="responsable_name" placeholder="" v-model="form.responsable_name">
+                    <p>{{ errors.responsable_name }}</p>
+                </div>
+
+                <div class="line">
+                    <label for="responsable_surname">Prénom responsable</label>
+                    <input type="text" id="responsable_surname" placeholder="" v-model="form.responsable_surname">
+                    <p>{{ errors.responsable_surname }}</p>
+                </div>
+
+                <div class="line">
+                    <label for="responsable_number">Numéro responsable</label>
+                    <input type="text" id="responsable_number" placeholder="" v-model="form.responsable_number">
+                    <p>{{ errors.responsable_number }}</p>
+                </div>
+
+
+                <h2>Information projet</h2>
+                <span>Use a permanent address where you can receive mail.</span>
+
+                <div class="line first">
+                   <label for="title">Titre</label>
                 <input type="text" id="title" placeholder="Titre..." v-model="form.title">
                 <p>{{ errors.title }}</p>
+                </div>
 
-                <label for="description">Description</label>
-                <input type="text" id="description" placeholder="Description..." v-model="form.description">
-                <p>{{ errors.description }}</p>
+                <div class="line">
+                    <label for="description">Description</label>
+                    <textarea type="text" id="description" placeholder="Description..." v-model="form.description"></textarea>
+                    <p>{{ errors.description }}</p>
+                </div>
 
-                <label for="start_date">Date de début</label>
-                <input type="date" id="start_date" placeholder="start_date..." v-model="form.start_date">
-                <p>{{ errors.start_date }}</p>
+                <div class="line">
+                    <label for="start_date">Date de début</label>
+                    <input type="date" id="start_date" placeholder="start_date..." v-model="form.start_date">
+                    <p>{{ errors.start_date }}</p>
+                </div>
 
-                <label for="end_date">Date de fin</label>
-                <input type="date" id="end_date" placeholder="end_date..." v-model="form.end_date">
-                <p>{{ errors.end_date }}</p>
+                <div class="line">
+                    <label for="end_date">Date de fin</label>
+                    <input type="date" id="end_date" placeholder="end_date..." v-model="form.end_date">
+                    <p>{{ errors.end_date }}</p>
+                </div>
 
-                <label for="finished">Etat</label>
-                <select v-model="form.finished" >
-                    <option :value="0" >
+                <div class="line">
+                    <label for="finished">Etat</label>
+                        <select v-model="form.finished" >
+                        <option :value="0" >
                         Annulé
-                    </option>
-                    <option :value="1" >
+                        </option>
+                        <option :value="1" >
                         En cours
-                    </option>
-                    <option :value="2" >
+                        </option>
+                        <option :value="2" >
                         Terminé
-                    </option>
-                </select>
-                <p>{{ errors.finished }}</p>
+                        </option>
+                        </select>
+                        <p>{{ errors.finished }}</p>
+                </div>
 
-                <label for="day_sold">Jours vendus</label>
-                <input type="number" id="day_sold" placeholder="day_sold..." v-model="form.day_sold">
-                <p>{{ errors.day_sold }}</p>
+                <div class="line">
+                    <label for="day_sold">Jours vendus</label>
+                    <input type="number" id="day_sold" placeholder="day_sold..." v-model="form.day_sold">
+                    <p>{{ errors.day_sold }}</p>
+                </div>
 
-                <label for="customers_id">Client du projet</label>
-                <select v-model="form.customers_id" >
-                    <option v-for="item in customers" :value="item.id" :key="item.id">
-                        {{ item.social_reason }}
-                    </option>
-                </select>
-                <p>{{ errors.customers_id }}</p>
 
-                <label for="responsable_name">Nom responsable</label>
-                <input type="text" id="responsable_name" placeholder="responsable_name..." v-model="form.responsable_name">
-                <p>{{ errors.responsable_name }}</p>
 
-                <label for="responsable_surname">Prénom responsable</label>
-                <input type="text" id="responsable_surname" placeholder="responsable_surname..." v-model="form.responsable_surname">
-                <p>{{ errors.responsable_surname }}</p>
 
-                <label for="responsable_number">Numéro responsable</label>
-                <input type="text" id="responsable_number" placeholder="responsable_number..." v-model="form.responsable_number">
-                <p>{{ errors.responsable_number }}</p>
 
-                <button class="bg-purple-700 hover:bg-purple-500 text-white font-bold py-2 px-8 rounded" type="submit">Valider</button>
+                <div class="buttons">
+                    <button @click="close" class="bg-gray-300 font-bold py-2 px-8 rounded">Annuler</button>
+                   <button class="bg-purple-700 hover:bg-purple-500 text-white font-bold py-2 px-8 rounded" type="submit">Sauvegarder</button>
+
+                </div>
+
             </form>
         </div>
 
@@ -102,6 +137,9 @@ export default {
     methods: {
         submit() {
             this.$inertia.post(this.route('projects.create'), this.form)
+        },
+        close() {
+
         }
     },
 }
@@ -117,5 +155,43 @@ form {
 
 form p {
     color: red;
+}
+
+h2{
+    font-size: 25px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+span {
+    margin: 10px 0;
+}
+
+.line{
+    display: flex;
+    flex-direction: row;
+    margin: 15px 0;
+    border-bottom: 1px solid grey;
+    padding: 15px;
+}
+
+.line input,select, textarea{
+    border-radius: 5px;
+    margin-left: 200px;
+    width: 40%;
+}
+
+.first{
+    border-top: 1px solid grey;
+}
+
+.buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.buttons button{
+    margin-right: 10px;
 }
 </style>
